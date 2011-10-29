@@ -12,6 +12,11 @@ void check_touch_pressed() {
   }
 }
 
+void show_in_display() {
+ TextOut(0,LCD_LINE1, "the toggle value is:" );
+ NumOut(0, LCD_LINE2, toggle );
+}
+
 void move() {
  OnFwd(OUT_AC, 75);
 }
@@ -26,7 +31,7 @@ task main() {
   while(true) {
 
     check_touch_pressed();
-
+    show_in_display();
     if (toggle == true) {
       move();
     }
