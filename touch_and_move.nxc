@@ -1,0 +1,39 @@
+#define TOUCHSENSOR SENSOR_1
+bool toggle = false;
+
+void initialize_sensors() {
+  SetSensor(IN_1,SENSOR_TOUCH); 
+}
+
+void check_touch_pressed() {
+  if (TOUCHSENSOR == 1) 
+  {
+    toggle = !toggle;
+  }
+}
+
+void move() {
+ OnFwd(OUT_AC, 75);
+}
+
+void stop_motor() {
+ Off(OUT_AC);
+}
+
+task main() {
+  initialize_sensors(); 
+
+  while(true) {
+
+    check_touch_pressed();
+
+    if (toggle == true) {
+      move();
+    }
+    else {
+      stop_motor();
+    }
+  } 
+
+}
+
